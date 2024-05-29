@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width initial-scale=1.0">
+        <title>Cricket Game</title>
+        <style>
+            #game-container{
+                margin-top: 5vw;
+                height:35vw;
+                width:58.9vw;
+                text-align: center;
+                background-image: url(https://static.vecteezy.com/system/resources/thumbnails/032/976/325/small/night-view-of-melbourne-cricket-ground-generative-ai-photo.jpg);
+                background-repeat: no-repeat;
+                background-attachment: inherit;
+                background-size: cover;
+                box-shadow: 15px 15px 15px 17px black;
+                box-sizing: content-box;
+                padding-top: 2vh;
+            }
+            #heading{
+                display: inline;
+                width:fit-content;
+                text-transform: capitalize;
+                font-weight: 900;
+                font-size: 6vw;
+                text-decoration: underline;
+                text-decoration-style:solid;
+                color:rgb(247 6 71);
+                text-shadow: 4px 4px 2px rgb(78, 246, 6);
+                /* box-shadow: 5px 4px 4px 4px rgb(37, 14, 14); */
+            }
+            #button{
+                margin-top:5vw;
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-around;
+                
+            }
+            #result{
+                text-align: center;
+                /* display: inline; */
+                width:max-content;
+                box-shadow: 4px 4px 4px 4px black;
+                font-weight: 900;
+                font-size: 1.7vw;
+                color:rgb(249, 3, 126);
+                text-shadow: 3px 2px 2px blue;
+                /* text-decoration: underline;
+                text-decoration-style: wavy; */
+                text-transform: uppercase;
+                /* transition: all 0.5s ease-in-out; */
+            }
+            .my-button{
+                cursor: pointer;
+                width:10vw;
+                height:3vw;
+                background:linear-gradient(to right, blue,green,rgb(4, 243, 4),yellow);
+                border:none;
+                box-shadow: 4px 4px 3px 4px black;
+                border-radius: 10px;
+                font-weight: 600;
+                font-size: 1.5vw;
+                text-shadow: 2px 1px 2px blue;
+                transition: all 0.5s ease-in-out;
+            }
+            .my-button:hover{
+                transform: scale(1.5);
+            }
+            #heading-part{
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: row;
+                justify-content: space-around;
+            }
+            .score{
+                font-size: 1vw;
+                
+            }
+            #user-score{
+                /* background-image: linear-gradient(to right,orange,yellow,green); */
+                box-shadow: 5px 4px 4px 4px yellowgreen;
+            }
+            #computer-score{
+                box-shadow: 5px 4px 4px 4px rgb(223, 170, 220);
+            }
+            #user-score h3{
+                text-decoration: underline;
+                text-decoration-style: solid;
+                color:yellowgreen;
+                text-shadow: 1px 1px 1px orangered;
+            }
+            #computer-score h3{
+                text-decoration: underline;
+                text-decoration-style: solid;
+                color:rgb(223, 170, 220);
+                text-shadow: 1px 1px 1px orangered;
+            }
+            #user-score p{
+                font-size: 1.2vw;
+                color:lightgreen;
+                text-shadow: 2px 2px 2px orangered;
+                font-weight: 800;
+            }
+            #computer-score p{
+                font-size: 1.2vw;
+                color:rgb(223, 170, 220);
+                text-shadow: 2px 2px 2px rgb(184, 55, 9);
+                font-weight: 800;
+            }
+
+            #final-result{
+                cursor: pointer;
+                width:12vw;
+                height:5vw;
+                background:linear-gradient(to right, rgb(248, 3, 248),purple,orange,yellow);
+                border:none;
+                box-shadow: 6px 6px 5px 5px black;
+                border-radius: 20px;
+                font-weight: 900;
+                font-size: 2.2vw;
+                color:rgb(0, 255, 30);
+                text-shadow: 6px 5px 3px black;
+                transition: all 0.5s ease-in-out;
+                margin-top: 5vw;
+            }
+            #final-result:hover{
+                text-decoration: underline;
+                text-decoration-style: solid;
+                transform: scale(1.8);
+            }
+            #hide-result{
+                margin-top: 10vw;
+                display: none;
+                font-size: 5vw;
+                font-weight: 800;
+                color: blanchedalmond;
+                text-shadow: 8px 8px 8px blueviolet;
+                text-align: center;
+                text-decoration: underline;
+                text-decoration-style: solid;
+                
+            }
+        </style>
+    </head>
+    <body>
+        
+        <center>
+        <div id="game-container">
+            <div id="hide-result"></div>
+            <div id="heading-part">
+         <div id="user-score" class="score">
+            <h3>User's Score</h3>
+            <p id="result1">
+                Won : 
+                <br>
+                Tie:
+                <br>
+                Lost:
+            </p>
+         </div>
+       
+        <div id="heading">bat ball game</div>
+
+        <div id="computer-score" class="score">
+            <h3>Computer's Score</h3>
+            <p id="result2">
+                Won : 
+                <br>
+                Tie:
+                <br>
+                Lost:
+            </p>
+         </div>  
+    </div>
+        <!-- <br> -->
+        <center><div id="result"></div></center>
+        <div id="button">
+            <button class="my-button" onclick="
+                randomNumber = randomNumber = generateRandomNumber();
+                if(randomNumber === 1){
+                    document.querySelector('#result').innerText = `🙁🙁It's a Tie🙁🙁
+                You have choosen bat
+                Computer also choose bat
+                `;
+                userscore.tie++;
+                computerscore.tie++;
+                showUser(userscore.won, userscore.tie, userscore.lost);
+                showComputer(computerscore.won, computerscore.tie, computerscore.lost );
+                }
+                else if(randomNumber === 2){
+                    document.querySelector('#result').innerText =`  🏆🏆You Win🏆🏆
+                You have choosen bat
+                Computer choose ball
+                 `;
+                 userscore.won++;
+                computerscore.lost++;
+                showUser(userscore.won, userscore.tie, userscore.lost);
+                showComputer(computerscore.won, computerscore.tie, computerscore.lost );
+                }
+                else{
+                    document.querySelector('#result').innerText =`😔😔You Loose😔😔
+                You have choosen bat
+                Computer choose stamp
+                `;
+                userscore.lost++;
+                computerscore.won++;
+                showUser(userscore.won, userscore.tie, userscore.lost);
+                showComputer(computerscore.won, computerscore.tie, computerscore.lost );
+                }
+                ">🏏Bat</button>
+
+            <button class="my-button" onclick="randomNumber = randomNumber = generateRandomNumber();
+            if(randomNumber === 2){
+                document.querySelector('#result').innerText = `🙁🙁It's a Tie 🙁🙁
+            You have choosen ball
+            Computer also choose ball
+            `;
+            userscore.tie++;
+                computerscore.tie++;
+                showUser(userscore.won, userscore.tie, userscore.lost);
+                showComputer(computerscore.won, computerscore.tie, computerscore.lost );}
+            else if(randomNumber === 3){
+                document.querySelector('#result').innerText =` 🏆 🏆You Win 🏆 🏆
+           You have choosen ball
+            Computer choose stamp
+            `;
+            userscore.won++;
+                computerscore.lost++;
+                showUser(userscore.won, userscore.tie, userscore.lost);
+                showComputer(computerscore.won, computerscore.tie, computerscore.lost );
+            }
+            else{
+                document.querySelector('#result').innerText =`  😔 😔You Loose 😔 😔
+            You have choosen ball
+            Computer choose bat
+            `;
+            userscore.lost++;
+                computerscore.won++;
+                showUser(userscore.won, userscore.tie, userscore.lost);
+                showComputer(computerscore.won, computerscore.tie, computerscore.lost );
+            }
+            "
+            >⚾Ball</button>
+
+            <button class="my-button" onclick="randomNumber = generateRandomNumber();
+            if(randomNumber === 3){
+                document.querySelector('#result').innerText = `🙁🙁It's a Tie 🙁🙁
+            You have choosen stamp
+            Computer also choose stamp
+            `;
+            userscore.tie++;
+                computerscore.tie++;
+                showUser(userscore.won, userscore.tie, userscore.lost);
+                showComputer(computerscore.won, computerscore.tie, computerscore.lost );}
+            else if(randomNumber === 1){
+                document.querySelector('#result').innerText =` 🏆 🏆You Win 🏆 🏆 
+            You have choosen stamp
+            Computer choose bat
+            `;
+            userscore.won++;
+                computerscore.lost++;
+                showUser(userscore.won, userscore.tie, userscore.lost);
+                showComputer(computerscore.won, computerscore.tie, computerscore.lost );
+            }
+            else{
+                document.querySelector('#result').innerText =`😔 😔You Loose 😔 😔
+            You have choosen stamp
+            Computer choose ball
+             `;
+             userscore.lost++;
+                computerscore.won++;
+                showUser(userscore.won, userscore.tie, userscore.lost);
+                showComputer(computerscore.won, computerscore.tie, computerscore.lost );
+            }
+            "
+            >Stump</button>
+        </div>
+    
+    <button id="final-result" onclick="if(userscore.won>computerscore.won){
+        // document.querySelector('#game-container').innerText = ``;
+        document.querySelector('#hide-result').style.display = 'block';
+        document.querySelector('#hide-result').innerText = '🏆 🏆You Won🏆 🏆';
+        document.querySelector('#final-result').style.display = 'none';
+        document.querySelector('#button').style.display = 'none';
+        document.querySelector('#heading-part').style.display = 'none';
+        document.querySelector('#result').style.display = 'none';
+
+    }
+        else if(userscore.won<computerscore.won){
+            // document.querySelector('#game-container').innerText = ``;
+            document.querySelector('#hide-result').style.display = 'block';
+            document.querySelector('#hide-result').innerText = '😔 😔You Lost😔 😔';
+            document.querySelector('#final-result').style.display = 'none';
+            document.querySelector('#button').style.display = 'none';
+            document.querySelector('#heading-part').style.display = 'none';
+            document.querySelector('#result').style.display = 'none';
+        }
+        else{
+            // document.querySelector('#game-container').innerText = ``;
+            document.querySelector('#hide-result').style.display = 'block';
+            document.querySelector('#hide-result').innerText = `🙁🙁It's a Tie🙁🙁`;
+            document.querySelector('#final-result').style.display = 'none';
+            document.querySelector('#button').style.display = 'none';
+            document.querySelector('#heading-part').style.display = 'none';
+            document.querySelector('#result').style.display = 'none';
+
+        }
+    ">Finish</button>
+    </div>
+</center>
+
+
+    <script>
+        function generateRandomNumber(){
+            let randomNo = Math.ceil(Math.random() * 3);
+            return randomNo;
+        }
+
+        let userscore = {
+            won : 0,
+            tie : 0,
+            lost : 0
+        }
+        let computerscore = {
+            won : 0,
+            tie : 0,
+            lost : 0
+        }
+
+        function showUser(won, tie, lost){
+            document.querySelector('#result1').innerText = `Won : ${won}
+                Tie: ${tie}
+                Lost: ${lost}`;
+        }
+        function showComputer(won, tie, lost){
+            document.querySelector('#result2').innerText = `Won : ${won}
+                Tie: ${tie}
+                Lost: ${lost}`;
+        }
+    </script>
+
+    </body>
+</html>
